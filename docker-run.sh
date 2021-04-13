@@ -15,7 +15,7 @@ fi
 
 version=$(git log -1 --format=%h)
 echo "Version: ${version}"
-if [ ${old_version} = ${version} ] ; then
+if [ "a${preserve}" != "ayes" ] && [ ${old_version} = ${version} ] ; then
     echo "Same version, skip the rebuilding and restarting..."
     exit 0;
 fi
@@ -23,7 +23,7 @@ fi
 echo $version > ./GIT_VERSION
 
 echo "Building docker image"
-docker build -t redhat-be3:${version} . 
+docker build -t yugc-final:${version} . 
 RET=$?
 if [ ${RET} -ne 0 ] ; then
     echo "docker build failed"
@@ -35,6 +35,6 @@ if [ ! -d ${workdir}/logs ] ; then
 fi
 
 echo "running tagging, restarting"
-docker tag redhat-be3:${version} redhat-be3:latest
-docker rm -f be1
-docker run -d --net=simple --name=be1 -v ${workdir}/logs:/logs -p 8900:3000 redhat-be3
+docker tag yugc-final:${version} yugc-final:latest
+docker rm -f finalserver1
+docker run -d --net=simple --name=finalserver1 -v ${workdir}/logs:/logs -p 8921:3000 yugc-final
