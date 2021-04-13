@@ -9,8 +9,12 @@ const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
 let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+if (process.env.SMART_MODE) {
+  config.database = process.env.SMART_DB;
+  config.username = process.env.SMART_DB_USER;
+  config.password = process.env.SMART_DB_PASS;
+  config.host = process.env.SMART_DB_HOST;
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
