@@ -22,6 +22,16 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false,
       comment: "第几单元"
+    },
+    subjectType: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      comment: "科目类型"
+    },
+    correct_times: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      comment: "正确率"
     }
   }, {
     sequelize,

@@ -1,4 +1,18 @@
 #!/usr/bin/env node
+const Tracer = require('@risingstack/jaeger')
+const jaeger = require('jaeger-client');
+const UDPSender = require('jaeger-client/dist/src/reporters/udp_sender');
+const configInfo = require("../config");
+var http = require('http');
+let localUdpSender = new UDPSender.default({ host: configInfo.TRACER_SERVER, port: configInfo.TRACER_PORT });
+const tracer = new Tracer({
+  serviceName: configInfo.TRACER_SERVICE_NAME,
+  reporter: new jaeger.RemoteReporter(localUdpSender),
+  sampler: new jaeger.RateLimitingSampler(configInfo.TRACER_SAMPLE_RATE),
+  options: {}
+});
+let systemSpan = tracer._tracer.startSpan("systemBooting");
+systemSpan.finish();
 
 /**
  * Module dependencies.

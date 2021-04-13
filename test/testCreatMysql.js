@@ -18,6 +18,8 @@ var test = function () {
   console.log(arr);
   console.log(subjectType);
 }
+
+
 const num2subject = function ( num ){
   let subtype ;
   switch (num){
@@ -40,7 +42,9 @@ const num2subject = function ( num ){
 
 const fs = require('fs');
 const readline = require('readline');
-const fidName = "./txt/last.txt";
+const fidName = "./txt/24.txt";
+var qbankId = 24; //几年级几学期  1-12 语文 13-24 数学 25-36 英语
+
 let arrstring;
 
 /**
@@ -138,7 +142,6 @@ var RegTest = async function (arrstr) {
 
     let qName = arr11[0]; //题目描述
     let qType = 0; // 0 单选题  1 多选题 2 判断题 3 填空题
-    let qbankId = 9; //几年级几学期  1-12 语文 13-24 数学 25-36 英语
     let correctAnswer = letter2number(arr2[0].trim()); //正确答案
     let qPoints = arr3[0]; //考点
     let explain = arr3[1]; //解析

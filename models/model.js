@@ -10,6 +10,8 @@ const QuestionBank = models.question_bank;
 const QuestionCollection = models.question_collection;
 const QuestionHistory = models.question_history;
 const QuestionHistoryItem = models.question_history_item;
+const Poetry = models.poetry;
+const PoetryBank = models.poetry_bank;
 
 
 exports.User = User;
@@ -19,3 +21,5 @@ exports.QuestionOption = QuestionOption;
 exports.QuestionCollection =QuestionCollection;
 exports.QuestionHistory = QuestionHistory;
 exports.QuestionHistoryItem =QuestionHistoryItem;
+exports.Poetry = Poetry;
+exports.PoetryBank = PoetryBank;

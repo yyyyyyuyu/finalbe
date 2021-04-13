@@ -36,6 +36,9 @@ function generateToken( code, id ) {
 function verifyToken(token) {
   try {
     return new Promise((resolve, reject) => {
+      if (!token) {
+        reject(new Error("token not found in http request at utils.js:verifyToken"));
+      }
       jwt.verify(token, cert, (err, res) => {
         if (err) {
           reject(err);
@@ -148,11 +151,60 @@ const num2term = function (num){
   }
   return name;
 }
+var num2letter = function (num){
+  let name='A';
+  switch (num){
+    case 1:
+      name = 'A';
+      break;
+    case 2:
+      name = 'B';
+      break;
+    case 3:
+      name = 'C';
+      break;
+    case 4:
+      name = 'D';
+      break;
+    case 5:
+      name = 'E';
+      break;
+    case 6:
+      name = 'F';
+      break;
+    case 7:
+      name = 'G';
+      break;
+    case 8:
+      name = 'H';
+      break;
+    case 9:
+      name = 'I';
+      break;
+    case 10:
+      name = 'J';
+      break;
+    case 11:
+      name = 'K';
+      break;
+    default:
+      name = 'A';
+      break;
+  }
+  return name;
+}
 
+
+/**
+ * 将所有题目根据单元打乱 并进行筛选其中  合适的题目
+ * @param questionAll
+ * @param subUnits 单元总数
+ * @returns {any[]}
+ */
 const randomSelection = function (questionAll, subUnits){
   let len =questionAll.length;
   let subGroupNum = Math.floor(len / subUnits);
-  let subGroup = 5;
+  let subGroup = 5; // 生成5道题
   let offset = len % subUnits;
   var questionArr = new Array();
   let index = 0;
@@ -176,6 +228,7 @@ const randomSelection = function (questionAll, subUnits){
     offset1++ ;
   }
 
+  // 对题目 进行随机抽取5道题
   let arr1  = new Array();
   for(let i =0;i<subUnits;i++){
     arr1[i] =new Array();
@@ -196,6 +249,19 @@ const randomSelection = function (questionAll, subUnits){
 }
 
 
+const randomQuestion = function (questionAll, randomNum){
+  let arr = shuffle(questionAll);
+  let arr2 =arr.slice(0,randomNum);
+  return arr2;
+
+}
+
+
+/**
+ * 洗牌算法 打乱数组顺序
+ * @param arr
+ * @returns {[]}
+ */
 function shuffle(arr){
   var result = [],
     random;
@@ -214,5 +280,6 @@ exports.verifyToken = verifyToken;
 exports.httpGetJson = httpGetJson;
 exports.num2subject = num2subject;
 exports.num2term = num2term;
+exports.num2letter = num2letter;
 exports.randomSelection = randomSelection;
-
+exports.randomQuestion =randomQuestion

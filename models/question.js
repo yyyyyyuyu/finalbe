@@ -35,7 +35,7 @@ module.exports = function(sequelize, DataTypes) {
     correct_answer: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      comment: "正确答案"
+      comment: "正确答案(A=1,B=2)"
     },
     q_points: {
       type: DataTypes.TEXT,
