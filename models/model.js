@@ -12,6 +12,7 @@ const QuestionHistory = models.question_history;
 const QuestionHistoryItem = models.question_history_item;
 const Poetry = models.poetry;
 const PoetryBank = models.poetry_bank;
+const RankList = models.rank_list;
 
 
 exports.User = User;
@@ -23,3 +24,4 @@ exports.QuestionHistory = QuestionHistory;
 exports.QuestionHistoryItem =QuestionHistoryItem;
 exports.Poetry = Poetry;
 exports.PoetryBank = PoetryBank;
+exports.RankList = RankList;

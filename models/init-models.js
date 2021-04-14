@@ -8,6 +8,7 @@ var _question_history = require("./question_history");
 var _question_history_item = require("./question_history_item");
 var _question_option = require("./question_option");
 var _question_wrong = require("./question_wrong");
+var _rank_list = require("./rank_list");
 var _redhat_user = require("./redhat_user");
 
 function initModels(sequelize) {
@@ -20,6 +21,7 @@ function initModels(sequelize) {
   var question_history_item = _question_history_item(sequelize, DataTypes);
   var question_option = _question_option(sequelize, DataTypes);
   var question_wrong = _question_wrong(sequelize, DataTypes);
+  var rank_list = _rank_list(sequelize, DataTypes);
   var redhat_user = _redhat_user(sequelize, DataTypes);
 
 
@@ -33,6 +35,7 @@ function initModels(sequelize) {
     question_history_item,
     question_option,
     question_wrong,
+    rank_list,
     redhat_user,
   };
 }
