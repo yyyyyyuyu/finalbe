@@ -18,6 +18,7 @@ module.exports = {
   TRACER_PORT: 6832,
   TRACER_SERVICE_NAME: 'ygc-final-server',
   TRACER_SAMPLE_RATE: 1,
+  SERVER_PREFIX: process.env.SMART_JAVA_SERVER ? process.env.SMART_JAVA_SERVER : "http://127.0.0.1:8080",
   secret: "ygc_yb",
 
 };

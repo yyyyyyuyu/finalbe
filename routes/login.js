@@ -19,7 +19,7 @@ exports.onLogin = function (req, res) {
   let attributes = ["address", "avatar_url", "gender", "id", "isAuthen", "nickName"];
   let userInfoDetail = {};
 
-  let url = 'http://127.0.0.1:8080/wx/user/wxb93d7c554a9a5833/login?code=' + code;
+  let url = config.SERVER_PREFIX + '/wx/user/wxb93d7c554a9a5833/login?code=' + code;
 
   util.httpGetJson(url).then((data) => {
     if (!data || !data.openid || !data.openid) {
