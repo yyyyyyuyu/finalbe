@@ -44,11 +44,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     extra1: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     extra2: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     textextra1: {
       type: DataTypes.TEXT,

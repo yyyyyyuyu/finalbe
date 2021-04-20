@@ -24,11 +24,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     extra1: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false
     },
     extra2: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false
     }
   }, {
     sequelize,

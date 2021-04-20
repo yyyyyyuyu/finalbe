@@ -55,3 +55,55 @@ exports.modifyUser = function (req, res) {
     })
   })
 };
+
+exports.postGrade = function (req, res){
+  let token = util.getToken(req);
+  let {grade,term} = req.body;
+  grade = JSON.parse(grade);
+  term = JSON.parse(term);
+  let userId ;
+  let userInfo ;
+  util.verifyToken(token).then(decoded => {
+    userId = decoded.payload.id;
+    return User.update({
+      grade:grade,
+      term:term
+    },{
+      where:{
+        id:userId
+      }
+    })
+  }).then( data => {
+    console.log( data);
+  })
+    .catch((exp) => {
+      // 失败处理
+      console.log(exp);
+      res.status(http.STATUS_NOT_FOUND).json({ error: '找不到用户' });
+    });
+
+}
+
+
+exports.getGrade = function ( req ,res){
+  let token = util.getToken(req);
+  let userId ;
+  let userInfo ;
+  util.verifyToken(token).then(decoded => {
+    userId = decoded.payload.id;
+    return User.findByPk(userId)
+  }).then(data => {
+    console.log(data);
+    userInfo = data.dataValues;
+    res.json({
+      grade: userInfo.grade,
+      term: userInfo.term,
+    })
+  })
+    .catch((exp) => {
+      // 失败处理
+      console.log(exp);
+      res.status(http.STATUS_NOT_FOUND).json({ error: '找不到用户' });
+    });
+
+}

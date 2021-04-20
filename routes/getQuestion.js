@@ -9,7 +9,7 @@ var QuestionOption = require('../models/model').QuestionOption;
 var QusetionCollection = require('../models/model').QuestionCollection;
 
 
-/**
+/**   停用停用停用停用停用停用停用停用停用停用停用停用停用停用停用停用停用停用停用停用停用
  * 获取题目信息 并将其转换成前端需要展示的格式
  * @param req
  * @param res
@@ -137,8 +137,13 @@ exports.getQuestionItem = function (req, res){
     console.log(questionAll);
     for(let i =0;i<qColletionAll.length;i++){
       let collectionInde = questionIdArr.indexOf(qColletionAll[i].questionId);
-      if(collectionInde != -1){
-        questionAll[collectionInde].isStore = 1;
+      if(collectionInde != -1 ){
+        if(qColletionAll[i].status == 1){
+          questionAll[collectionInde].isStore = 1;
+        }
+        else{
+          questionAll[collectionInde].isStore = 0;
+        }
       }
     }
     console.log(questionAll);
@@ -306,8 +311,13 @@ exports.getUnitsQuestion = function (req, res){
     console.log(questionAll);
     for(let i =0;i<qColletionAll.length;i++){
       let collectionInde = questionIdArr.indexOf(qColletionAll[i].questionId);
-      if(collectionInde != -1){
-        questionAll[collectionInde].isStore = 1;
+      if(collectionInde != -1 ){
+        if(qColletionAll[i].status == 1){
+          questionAll[collectionInde].isStore = 1;
+        }
+        else{
+          questionAll[collectionInde].isStore = 0;
+        }
       }
     }
     console.log(questionAll);
@@ -448,8 +458,13 @@ exports.getExtraQuestion = function (req, res){
     console.log(questionAll);
     for(let i =0;i<qColletionAll.length;i++){
       let collectionInde = questionIdArr.indexOf(qColletionAll[i].questionId);
-      if(collectionInde != -1){
-        questionAll[collectionInde].isStore = 1;
+      if(collectionInde != -1 ){
+        if(qColletionAll[i].status == 1){
+          questionAll[collectionInde].isStore = 1;
+        }
+        else{
+          questionAll[collectionInde].isStore = 0;
+        }
       }
     }
     console.log(questionAll);

@@ -16,6 +16,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: ""
     },
+    grade: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    term: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     gender: {
       type: DataTypes.TINYINT.UNSIGNED,
       allowNull: false,

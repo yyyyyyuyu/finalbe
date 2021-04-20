@@ -18,6 +18,10 @@ router.route('/users/id').get(middlewares.checkToken, users.getUser)  //获取�
 router.post('/login/updateUserInfo', middlewares.checkToken, login.updateUserInfo); //认证之后更新信息
 router.get('/login/isAuthenSuc', middlewares.checkToken, login.isAuthenSuc); //是否认证
 
+router.post('/course/updateUserInfo', middlewares.checkToken, users.postGrade); //认证之后更新信息
+router.get('/course/getUserInfo', middlewares.checkToken, users.getGrade); //是否认证
+
+
 // router.get('/users/id', function(req, res, next) {
 //   res.send('respond with a resource');
 // });
@@ -41,5 +45,9 @@ router.get('/peotry/Edition', middlewares.checkToken, Poetry.getPoetry);
 
 router.post('/rankList/User',middlewares.checkToken, RankList.postRankList);
 router.get('/rankList/User', middlewares.checkToken, RankList.getRankList);
+
+
+router.post('/course/History/Collection',middlewares.checkToken, qhistory.postCollectionQuestion);
+
 
 module.exports = router;

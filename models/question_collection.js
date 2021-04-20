@@ -14,6 +14,15 @@ module.exports = function(sequelize, DataTypes) {
     questionId: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    status: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      comment: "是否收藏 0:否 1：是"
+    },
+    subjectType: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {
     sequelize,

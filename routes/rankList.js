@@ -99,7 +99,7 @@ exports.getRankList = function (req,res){
         subjectType: subType
       }
     })
-  }).then( data => {
+  }).then(  data => {
     console.log(data);
     rankInfo = data.map(function (value, index, array){
       return value.dataValues;
@@ -112,7 +112,7 @@ exports.getRankList = function (req,res){
         id: userInfoId
       }
     })
-  }).then( data=> {
+  }).then( async data=> {
     console.log(data);
     allUserInfo = data.map(function (value, index, array){
       return value.dataValues;
@@ -133,6 +133,12 @@ exports.getRankList = function (req,res){
         userInfo = value;
       }
     })
+    if(!userInfo){
+      let userdata = await User.findByPk(userId);
+      userInfo = userdata.dataValues;
+      userInfo.correct_num = 0;
+    }
+
     console.log(userInfo);
     res.json({
       rankData,
@@ -174,7 +180,7 @@ exports.getAllRankList = function (req,res){
         id: userInfoId
       }
     })
-  }).then( data=> {
+  }).then( async data => {
     console.log(data);
     allUserInfo = data.map(function (value, index, array){
       return value.dataValues;
@@ -195,6 +201,11 @@ exports.getAllRankList = function (req,res){
         userInfo = value;
       }
     })
+    if(!userInfo){
+      let userdata = await User.findByPk(userId);
+      userInfo = userdata.dataValues;
+      userInfo.correct_num = 0;
+    }
     console.log(userInfo);
     res.json({
       rankData,
