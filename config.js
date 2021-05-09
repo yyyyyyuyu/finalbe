@@ -6,6 +6,7 @@ const baseUrl = {
   release: 'https://redhat.fogice.com' // 正式版
 };
 
+let imgUrl = "https://quizapp.oss-cn-shenzhen.aliyuncs.com/yugcdev/";
 
 
 
@@ -13,6 +14,7 @@ const baseUrl = {
 
 
 module.exports = {
+  imgUrl,
   api: `${baseUrl["develop"]}/api/v1`,
   TRACER_SERVER: 'south.anitago.com',
   TRACER_PORT: 6832,

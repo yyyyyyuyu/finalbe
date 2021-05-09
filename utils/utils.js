@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const cert = require("../config").secret;
 var request = require('request');
+const config = require('../config');
 
 /**
  * 生成token
@@ -274,6 +275,30 @@ function shuffle(arr){
 }
 
 
+function  text2img(e){
+  let title = e ;
+  let re1 = /doc\d+/;
+  if(title.match(re1)){
+    let result  = config.imgUrl + title;
+    return result;
+  }
+  else{
+    return title;
+  }
+
+}
+
+function  isImg(e){
+  let title = e ;
+  let re1 = /doc\d+/;
+  if(title.match(re1)){
+    let result  = config.imgUrl + title;
+    return true;
+  }
+  else{
+    return false;
+  }
+}
 
 exports.generateToken = generateToken;
 exports.verifyToken = verifyToken;
@@ -282,4 +307,6 @@ exports.num2subject = num2subject;
 exports.num2term = num2term;
 exports.num2letter = num2letter;
 exports.randomSelection = randomSelection;
-exports.randomQuestion =randomQuestion
+exports.randomQuestion =randomQuestion;
+exports.isImg = isImg;
+exports.text2img = text2img ;

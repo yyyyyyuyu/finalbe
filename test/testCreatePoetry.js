@@ -49,7 +49,7 @@ const num2subject = function ( num ){
 
 const fs = require('fs');
 const readline = require('readline');
-const fidName = "./txt/poetry1.txt";
+const fidName = "./txt/poetry2.txt";
 var pbankId = 38; //几年级几学期  1-12 语文 13-24 数学 25-36 英语    37中国文化知识 38 小学科学竞赛知识
 
 let arrstring;
@@ -124,7 +124,10 @@ var RegTest = async function (arrstr) {
     let arr1 = strarr[i].split(re1);
     let re2 = /【译文】/;
     let arr2 = arr1[1].split(re2);
-    let re3 = /【赏析】/;
+
+   // let re3 = /【赏析】/; //poetry1.txt
+    let re3 = /【鉴赏】/; //poetry2.txt
+
     let arr3 = arr2[1].split(re3);
 
     let re10 = /\$\$/;
@@ -158,6 +161,9 @@ var RegTest = async function (arrstr) {
     arrname=testarr[0];
     let testarr1 = arrauthor.split(allre);
     arrauthor = testarr1[0];
+
+    arrname = arrname.trim();
+    arrauthor = arrauthor.trim();
 
     let poetry_name = arrname;
     let poetry_author = arrauthor;
@@ -195,6 +201,9 @@ var RegTest = async function (arrstr) {
   }
 
   console.log(valueArrQues);
+  console.log("okokok");
+  console.log("okokok");
+  console.log("okokok");
 
  const arrQues = await Poetry.bulkCreate(valueArrQues);
 

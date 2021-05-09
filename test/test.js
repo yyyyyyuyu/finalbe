@@ -3,6 +3,7 @@ const creatMysql = require('./testCreatMysql');
 const getQues = require('./testGetQues');
 const CreateExtra = require('./testCreateExtra');
 const CreatePoetry = require('./testCreatePoetry');
+const CreateHtml = require('./testCreateWord');
 
 describe('#testCreatMysql.js', function() {
   describe('function()', function () {
@@ -27,11 +28,15 @@ describe('#testCreatMysql.js', function() {
     it('should return 7', async function () {
       await CreateExtra.testScience();
     });
-    it('should return 8', async function () {
+    it('should return' +
+      ' 8', async function () {
       await CreateExtra.test1();
     });
     it('should return 9', async function () {
       await CreatePoetry.testPoetry();
+    });
+    it('should return 10', async function () {
+      await CreateHtml.testParseHtml();
     });
   });
 });

@@ -42,8 +42,8 @@ const num2subject = function ( num ){
 
 const fs = require('fs');
 const readline = require('readline');
-const fidName = "./txt/24.txt";
-var qbankId = 24; //几年级几学期  1-12 语文 13-24 数学 25-36 英语
+const fidName = "./word/12.txt";
+var qbankId = 36; //几年级几学期  1-12 语文 13-24 数学 25-36 英语
 
 let arrstring;
 
@@ -182,6 +182,7 @@ var RegTest = async function (arrstr) {
     }
   }
 
+  console.log(valueArrQues);
 
   const arrQues = await Question.bulkCreate(valueArrQues);
 
@@ -217,6 +218,9 @@ var RegTest = async function (arrstr) {
       valueOption.push(value2);
     }
   }*/
+  console.log(valueArrOptions);
+
+
 
   const arrOpti = QuestionOption.bulkCreate(valueOption);
   console.log(arrOpti);

@@ -69,7 +69,13 @@ exports.getPoetry = function (req,res){
           console.log(arrmj[j]);
         }
       }
-      let value = {
+       testpoetryarr[0] = testpoetryarr[0].map(function (value,index) {
+         return value.trim();
+       });
+      testpoetryarr[2] = testpoetryarr[2].map(function (value,index) {
+        return value.trim();
+      });
+        let value = {
         poetry_name: temppoetryAll[i].poetry_name,
         poetry_author: temppoetryAll[i].poetry_author,
         poetry_major: testpoetryarr[0],

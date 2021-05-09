@@ -89,6 +89,7 @@ exports.getRankList = function (req,res){
   let userInfoId;
   let allUserInfo;
   let rankData = [];
+  let limitRank = 10; //只显示前10名用户
   util.verifyToken(token).then(decoded => {
     userId = decoded.payload.id
     return RankList.findAll({
@@ -97,7 +98,8 @@ exports.getRankList = function (req,res){
       ],
       where: {
         subjectType: subType
-      }
+      },
+      limit: 10  //只显示前10名用户
     })
   }).then(  data => {
     console.log(data);
