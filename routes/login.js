@@ -40,6 +40,8 @@ exports.onLogin = function (req, res) {
       return User.create({
         avatar_url: userInfo.avatarUrl,
         gender: userInfo.gender,
+        grade:0,
+        term:0,
         nickName: userInfo.nickName,
         openid: openid,
         balance: 50, // 创建用户时送1换换币
@@ -52,6 +54,8 @@ exports.onLogin = function (req, res) {
       return User.create({
         avatar_url: 'aabc',
         gender: 1,
+        grade:0,
+        term:0,
         nickName: '换友',
         openid: openid,
         balance: 50, // 创建用户时送1换换币
@@ -77,6 +81,7 @@ exports.onLogin = function (req, res) {
   }).then(userData => {
     let user = userData.dataValues;
     if (!userData || !user) {
+      console.error("cannot find/create user entry");
       throw new Error("cannot find/create user entry");
     }
     //生成token 返回

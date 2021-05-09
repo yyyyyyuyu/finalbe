@@ -2,8 +2,6 @@
 const baseUrl = {
   develop: 'http://127.0.0.1:3000', // 开发版
   // develop: 'https://localhost:8999', // 开发版
-  trial: 'https://redhat-dev.anitago.com', // 体验版
-  release: 'https://redhat.fogice.com' // 正式版
 };
 
 let imgUrl = "https://quizapp.oss-cn-shenzhen.aliyuncs.com/yugcdev/";

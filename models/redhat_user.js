@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     password: {
       type: DataTypes.STRING(32),
-      allowNull: false,
+      allowNull: true,
       defaultValue: ""
     },
     grade: {
@@ -26,26 +26,26 @@ module.exports = function(sequelize, DataTypes) {
     },
     gender: {
       type: DataTypes.TINYINT.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       defaultValue: 0
     },
     birthday: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       defaultValue: 0
     },
     last_login_time: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       defaultValue: 0
     },
     last_login_ip: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: true
     },
     user_level_id: {
       type: DataTypes.TINYINT.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       defaultValue: 0
     },
     name: {
@@ -58,7 +58,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     register_ip: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: true
     },
     avatar_url: {
       type: DataTypes.STRING(255),
@@ -66,7 +66,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     openid: {
       type: DataTypes.STRING(50),
-      allowNull: false
+      allowNull: true
     },
     school_id: {
       type: DataTypes.INTEGER,
@@ -96,7 +96,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     userType: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       defaultValue: 100
     },
     token: {
