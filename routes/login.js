@@ -56,7 +56,7 @@ exports.onLogin = function (req, res) {
         gender: 1,
         grade:0,
         term:0,
-        nickName: '换友',
+        nickName: '游客',
         openid: openid,
         balance: 50, // 创建用户时送1换换币
         weight: 100

@@ -634,7 +634,7 @@ exports.getWrongSubject = function (req,res){
   let removeWrongQHisItem = [];
   let removeWrongQHisItemId  =[];
   let userId;
-  let qCollectionAll ;
+  let qCollectionAll = [] ;
   util.verifyToken(token).then(decoded => {
     userId = decoded.payload.id;
     return QuestionHistory.findAll({
@@ -678,6 +678,7 @@ exports.getWrongSubject = function (req,res){
     questionIdArr = qhistoryItemAll.map(function (value, index, array){
       return value.question_id;
     })
+
 
     for(let i =0;i<qCollectionAll.length;i++){
       let collectionInde = questionIdArr.indexOf(qCollectionAll[i].questionId);
