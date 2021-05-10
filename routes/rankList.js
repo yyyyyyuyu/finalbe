@@ -89,6 +89,7 @@ exports.getRankList = function (req,res){
   let userInfoId;
   let allUserInfo;
   let rankData = [];
+  let userId2rankId = new Map();
   let limitRank = 10; //只显示前10名用户
   util.verifyToken(token).then(decoded => {
     userId = decoded.payload.id
@@ -109,6 +110,9 @@ exports.getRankList = function (req,res){
     userInfoId = rankInfo.map(function (value, index, array){
       return value.user_id;
     })
+    rankInfo.forEach(function (value, index, array){
+      userId2rankId.set(index, value.user_id);
+    })
     return User.findAll({
       where: {
         id: userInfoId
@@ -120,10 +124,17 @@ exports.getRankList = function (req,res){
       return value.dataValues;
     })
     for(let i =0;i<rankInfo.length;i++){
+      let realUserId = userId2rankId.get(i);
+      let currentUserInfo;
+      allUserInfo.forEach(function (value, index, array) {
+        if(realUserId == value.id){
+          currentUserInfo = value;
+        }
+      })
       let value = {
-        user_id: allUserInfo[i].id,
-        nickName: allUserInfo[i].nickName,
-        avatar_url: allUserInfo[i].avatar_url,
+        user_id: currentUserInfo.id,
+        nickName: currentUserInfo.nickName,
+        avatar_url: currentUserInfo.avatar_url,
         correct_num: rankInfo[i].correct_num
       }
       rankData.push(value);
