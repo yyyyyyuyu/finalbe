@@ -666,7 +666,7 @@ exports.getWrongSubject = function (req,res){
         userId: userId
       }
     })
-    if(qcarr.length>1){
+    if(qcarr.length>=1){
       qCollectionAll = qcarr.map(function (value, index, array){
         return value.dataValues;
       })
@@ -877,7 +877,7 @@ exports.getWrongSubQuestion = function (req,res){
 
       }
     })
-    if(qcarr.length>1){
+    if(qcarr.length>=1){
       qCollectionAll = qcarr.map(function (value, index, array){
         return value.dataValues;
       })
@@ -947,7 +947,7 @@ exports.getWrongSubQuestion = function (req,res){
       let collectionInde = removerQuestionId.indexOf(qCollectionAll[i].questionId);
       if(collectionInde != -1 ){
         let updatedAt ;
-        updatedAt = qCollectionAll[i].updatedAt>= removeQuestion[collectionInde].updatedAt ? qCollectionAll[i].updatedAt : removeQuestion[collectionInde].updatedAt;
+        updatedAt = qCollectionAll[i].updatedAt >= removeQuestion[collectionInde].updatedAt ? qCollectionAll[i].updatedAt : removeQuestion[collectionInde].updatedAt;
         if(qCollectionAll[i].status == 1){
           removeQuestion[collectionInde].isStore = 1;
           removeQuestion[collectionInde].updatedAt = updatedAt;
@@ -1078,7 +1078,12 @@ exports.getWrongSubQuestion = function (req,res){
         let currentqhistoryIndex = qhistoryId.indexOf(currentqHistoryId);
         wrongItem.isAnswer = qhistoryItemAll[wrongIndex].is_answer ;
         wrongItem.isCorrect = qhistoryItemAll[wrongIndex].is_correct;
-        wrongItem.WrongQ = 1;
+        if(wrongItem.isCorrect == 1 ){
+          wrongItem.WrongQ = 0;
+        }
+        else{
+          wrongItem.WrongQ = 1;
+        }
         wrongItem.createdAt = JSON.stringify(lastcreatedAt);
         wrongItem.qhistory_name = qhistoryAll[currentqhistoryIndex].qhistory_name;
         wrongItem.qhistory_unit = qhistoryAll[currentqhistoryIndex].qhistory_unit;
