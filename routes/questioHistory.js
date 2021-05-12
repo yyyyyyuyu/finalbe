@@ -987,11 +987,17 @@ exports.getWrongSubQuestion = function (req,res){
     })
     let optionsum ;
     //
+    let divideIndex;
+    let firstdivide = 0;
     for(let i =0;i< otherQCarr.length;i++){
       let index = otherQCollectionId.indexOf(otherQCarrId[i]);
       //otherQCollection[index] = otherQCarr[i];
       // 判断一下 otherQCollection[i] 是否收藏了 然后让 isStore =1
       if(otherQCollection[index].status == 1){
+        if(firstdivide == 0){
+          divideIndex = removeQuestion.length;
+        }
+        firstdivide = 1;
         otherQCarr[i].isStore = 1;
         otherQCarr[i].qctionupdate = otherQCollection[index].updatedAt;
         removeQuestion.push(otherQCarr[i]);
@@ -1064,6 +1070,47 @@ exports.getWrongSubQuestion = function (req,res){
     console.log(questionAll); // questionALL 只是去重后 并且 全是不重复的错题 问题与选项 结合一起之后的数据 （还是去重）
     let wrongArr = [];
     for(let i =0;i<questionAll.length;i++){
+      if(i >= divideIndex){
+        let wrongItem =  Object.assign({}, questionAll[i]);
+        wrongItem.createdAt = JSON.stringify(questionAll[i].qctionupdate);
+        wrongItem.isAnswer = 0;
+        wrongItem.isCorrect = 0;
+        wrongItem.CollectionQ = 1;
+        wrongArr.push(wrongItem);
+      }
+      else{
+        let wrongIndex = questionIdArr.lastIndexOf(questionAll[i].question_id);
+        let lastcreatedAt;
+        if(questionAll[i].updatedAt){
+          lastcreatedAt =  questionAll[i].updatedAt >= qhistoryItemAll[wrongIndex].updatedAt ? questionAll[i].updatedAt : qhistoryItemAll[wrongIndex].updatedAt;
+        }
+        else{
+          lastcreatedAt = qhistoryItemAll[wrongIndex].updatedAt;
+        }
+        let wrongItem =  Object.assign({}, questionAll[i]);
+        let currentqHistoryId = qhistoryItemAll[wrongIndex].qhistory_id;
+        let currentqhistoryIndex = qhistoryId.indexOf(currentqHistoryId);
+        wrongItem.isAnswer = qhistoryItemAll[wrongIndex].is_answer ;
+        wrongItem.isCorrect = qhistoryItemAll[wrongIndex].is_correct;
+          wrongItem.WrongQ = 1;
+
+        wrongItem.createdAt = JSON.stringify(lastcreatedAt);
+        wrongItem.qhistory_name = qhistoryAll[currentqhistoryIndex].qhistory_name;
+        wrongItem.qhistory_unit = qhistoryAll[currentqhistoryIndex].qhistory_unit;
+        wrongArr.push(wrongItem);
+      }
+
+
+      /*      if(wrongItem.isCorrect == 0 && qhistoryAll[currentqhistoryIndex].qhistory_unit != 99999){
+              wrongArr.push(wrongItem);
+            }
+            else if ( qhistoryAll[currentqhistoryIndex].qhistory_unit == 99999){
+              wrongArr.push(wrongItem);
+            }*/
+    }
+
+/*
+    for(let i =0;i<questionAll.length;i++){
       let wrongIndex = questionIdArr.lastIndexOf(questionAll[i].question_id);
       if(wrongIndex != -1){
         let lastcreatedAt;
@@ -1099,13 +1146,14 @@ exports.getWrongSubQuestion = function (req,res){
       }
 
 
-      /*      if(wrongItem.isCorrect == 0 && qhistoryAll[currentqhistoryIndex].qhistory_unit != 99999){
+      /!*      if(wrongItem.isCorrect == 0 && qhistoryAll[currentqhistoryIndex].qhistory_unit != 99999){
               wrongArr.push(wrongItem);
             }
             else if ( qhistoryAll[currentqhistoryIndex].qhistory_unit == 99999){
               wrongArr.push(wrongItem);
-            }*/
+            }*!/
     }
+*/
     console.log(wrongArr);
     let currentWQuestion = [];
     let temp;
